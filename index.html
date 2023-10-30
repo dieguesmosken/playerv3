@@ -1,78 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>player api</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- Adicione esta linha para vincular o arquivo CSS externo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Adicione esta linha para carregar os ícones do Font Awesome -->
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
 
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="css/styleguide.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
 </head>
 
 <body>
-    <div class="div-player">
-        <div class="div-details-margin">
-            <div class="div-details">
-                <div class="div-now-playing">
-                    <div class="text-wrapper">REPRODUZINDO 1 DE 56</div>
+    <div class="DivPlayer">
+        <div class="DivDetailsMargin">
+            <div class="DivDetails">
+                <div class="DivNowPlaying">
+                    <div class="Reproduzindo1De56">REPRODUZINDO 1 DE 56</div>
                 </div>
-                <div class="div-track-art-margin">
-                    <img class="div-track-art" src="img/div-track-art.png" alt="music image" />
+                <div class="DivTrackArtMargin">
+                    <img class="DivTrackArt" src="https://via.placeholder.com/250x250" />
                 </div>
-                <div class="overlap-group">
-                    <div class="div-track-name">
-                        <div class="div">Resilient (feat. Aitana)</div>
-                    </div>
-                    <div class="div-track-artist">
-                        <div class="text-wrapper-2">Katy Perry</div>
-                    </div>
+                <div class="DivTrackName">
+                    <div class="music-name">Music name</div>
+                </div>
+                <div class="DivTrackArtist">
+                    <div class="KatyPerry">Katy Perry</div>
                 </div>
             </div>
         </div>
-        <div class="div-buttons">
-            <div class="symbol-wrapper">
-                <div class="symbol"></div>
+        <div class="DivButtons">
+            <div class="DivPrevTrack">
+                <i class="fas fa-step-backward"></i> <!-- Ícone de "Anterior" -->
             </div>
-            <div class="symbol-wrapper">
-                <div class="symbol-2"></div>
+            <div class="DivPlaypauseTrack" id="playButton">
+                <i class="fas fa-play"></i> <!-- Ícone de "Play" -->
             </div>
-            <div class="symbol-wrapper">
-                <div class="symbol"></div>
-            </div>
-        </div>
-        <div class="div-slider-container">
-            <div class="div-wrapper">
-                <div class="text-wrapper">00:00</div>
-            </div>
-            <div class="input-margin">
-                <div class="input">
-                    <div class="div-thumb-wrapper">
-                        <div class="div-thumb"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="div-wrapper">
-                <div class="text-wrapper">03:18</div>
+            <div class="DivNextTrack">
+                <i class="fas fa-step-forward"></i> <!-- Ícone de "Próximo" -->
             </div>
         </div>
-        <div class="div-slider-container-2">
-            <div class="symbol-wrapper-2">
-                <div class="symbol-3"></div>
+        <div class="DivSliderContainer">
+            <div class="DivCurrentTime">
+                <div class="00">00:00</div>
             </div>
-            <div class="input-wrapper">
-                <div class="input">
-                    <div class="div-2">
-                        <div class="div-thumb"></div>
-                    </div>
+            <div class="InputMargin">
+                <div class="Input">
+                    <div class="DivThumb"></div>
                 </div>
             </div>
-            <div class="symbol-wrapper-2">
-                <div class="symbol-3"></div>
+            <div class="DivTotalDuration">
+                <div class="18">03:18</div>
+            </div>
+        </div>
+        <div class="DivSliderContainer">
+            <div class="IFaVolumeDown">
+                <i class="fas fa-volume-down"></i> <!-- Ícone de "Volume Baixo" -->
+            </div>
+            <div class="InputMargin">
+                <div class="Input">
+                    <div class="DivThumb"></div>
+                </div>
+            </div>
+            <div class="IFaVolumeUp">
+                <i class="fas fa-volume-up"></i> <!-- Ícone de "Volume Alto" -->
             </div>
         </div>
     </div>
+
+    <script>
+        const playButton = document.getElementById("playButton");
+        let isPlaying = false;
+
+        playButton.addEventListener("click", () => {
+            if (isPlaying) {
+                // Pausar a música (aqui você implementaria a lógica do Spotify para pausar a reprodução)
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                // Iniciar a música (aqui você implementaria a lógica do Spotify para iniciar a reprodução)
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = 'SEU_TOKEN_DE_ACESSO'; // Você precisa obter um token de acesso OAuth 2.0 válido.
+
+            const player = new Spotify.Player({
+                name: 'Seu Player de Música',
+                getOAuthToken: cb => { cb(token); }
+            });
+
+            // Inicialize o player
+            player.connect();
+        };
+
+        // Exemplo de controles de reprodução
+        player.addListener('player_state_changed', state => {
+            if (state) {
+                console.log('Nome da música:', state.track_window.current_track.name);
+            }
+        });
+
+        // Reproduz uma faixa
+        player.addListener('ready', ({ device_id }) => {
+            player.addToQueue('spotify:track:SEU_ID_DE_FAIXA');
+            player.connect();
+        });
+
+    </script>
 </body>
 
 </html>
