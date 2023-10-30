@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reprodução de Música</title>
+</head>
+<body>
+    <div class="DivPlayer">
+        <!-- Outros elementos do player aqui -->
+        <div class="DivButtons">
+            <button id="playButton">Reproduzir Música</button>
+        </div>
+    </div>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        // Configure suas credenciais do Spotify
+        const clientId = 'SEU_CLIENT_ID';
+        const accessToken = 'SEU_ACCESS_TOKEN';
+
+        // Inicialize o player do Spotify
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const player = new Spotify.Player({
+                name: 'Seu Player de Música',
+                getOAuthToken: cb => {
+                    cb(accessToken);
+                }
+            });
+
+            // Conectar ao player
+            player.connect().then(success => {
+                if (success) {
+                    console.log('Conectado ao player do Spotify');
+                }
+            }).catch(error => {
+                console.error('Erro ao conectar ao player do Spotify', error);
+            });
+
+            // Configurar a ação de reprodução quando o botão é clicado
+            const playButton = document.getElementById("playButton");
+            playButton.addEventListener("click", () => {
+                // ID da faixa que você deseja reproduzir (substitua pelo seu próprio)
+                const trackId = 'spotify:track:3By64Pmpn0LkwPKSjqSTBp';
+
+                // Reproduz a faixa no Spotify
+                player.resume().then(() => {
+                    player.queue(trackId);
+                }).catch(error => {
+                    console.error('Erro ao reproduzir a faixa', error);
+                });
+            });
+        };
+    </script>
+</body>
+</html>

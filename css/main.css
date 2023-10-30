@@ -1,0 +1,197 @@
+/* styles.css */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.DivPlayer {
+    width: 100%;
+    height: 100vh;
+    background: #406094;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+.DivDetailsMargin {
+    padding-top: 25px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+}
+
+.DivDetails {
+    width: 502.31px;
+    height: 401px;
+    position: relative;
+}
+
+.DivNowPlaying {
+    padding-right: 22.05px;
+    left: 155.13px;
+    top: -1px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.Reproduzindo1De56 {
+    color: black;
+    font-size: 16px;
+    font-family: Trebuchet MS;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.DivTrackArtMargin {
+    width: 300px;
+    height: 300px;
+    padding: 25px;
+    left: 101.16px;
+    top: 18px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.DivTrackArt {
+    align-self: stretch;
+    height: 250px;
+    border-radius: 37.50px;
+}
+
+.DivTrackName {
+    left: 0px;
+    top: 75%;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+.music-name {
+    color: black;
+    font-size: 47.44px;
+    font-family: Trebuchet MS;
+    font-weight: 700;
+    word-wrap: break-word;
+    
+}
+
+.DivTrackArtist {
+    padding-right: 1.03px;
+    left: 195.14px;
+    top: 372px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.KatyPerry {
+    color: black;
+    font-size: 24px;
+    font-family: Trebuchet MS;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.DivButtons {
+    justify-content: flex-start;
+    align-items: center;
+    display: inline-flex;
+}
+
+.DivPrevTrack {
+    padding: 25px;
+    opacity: 0.80;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.Symbol {
+    color: black;
+    font-size: 32px;
+    font-family: Font Awesome 5 Free;
+    font-weight: 900;
+    line-height: 32px;
+    word-wrap: break-word;
+}
+
+.DivPlaypauseTrack {
+    padding: 25px;
+    opacity: 0.80;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.DivNextTrack {
+    padding: 25px;
+    opacity: 0.80;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.DivSliderContainer {
+    width: 400px;
+    padding-left: 17.95px;
+    padding-right: 18px;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+.DivCurrentTime {
+    padding-top: 9px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.DivTotalDuration {
+    padding-top: 9px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.IFaVolumeDown {
+    padding: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.IFaVolumeUp {
+    padding: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
