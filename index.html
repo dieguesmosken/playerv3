@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <title>Reprodução de Música</title>
 </head>
+
 <body>
     <div class="DivPlayer">
         <div class="DivDetailsMargin">
@@ -15,6 +17,7 @@
         </div>
         <div class="DivButtons">
             <button id="authButton">Autenticar no Spotify</button>
+            <button id="playMusicButton">Reproduzir Música</button>
             <div class="DivPrevTrack">
                 <i class="fas fa-step-backward"></i>
             </div>
@@ -33,6 +36,7 @@
     <script>
         const authButton = document.getElementById("authButton");
         const playButton = document.getElementById("playButton");
+        const playMusicButton = document.getElementById("playMusicButton");
         let isPlaying = false;
 
         authButton.addEventListener("click", () => {
@@ -55,22 +59,39 @@
             isPlaying = !isPlaying;
         });
 
-        window.onSpotifyWebPlaybackSDKReady = () => {
-            // Configure suas credenciais do Spotify
-            const clientId = 'SEU_CLIENT_ID';
-            const accessToken = 'SEU_ACCESS_TOKEN';
+        playMusicButton.addEventListener("click", () => {
+            // Aqui você precisa implementar a lógica para carregar e reproduzir a música
+            // Exemplo de ID de faixa (substitua pelo seu próprio):
+            const trackId = 'spotify:track:3By64Pmpn0LkwPKSjqSTBp';
 
-            const player = new Spotify.Player({
-                name: 'Seu Player de Música',
-                getOAuthToken: cb => { cb(accessToken); }
-            });
+            // Implemente a lógica para carregar e reproduzir a faixa aqui
+            // Você precisará usar a API do Spotify para fazer isso.
+        });
 
-            // Inicialize o player
-            player.connect();
-        };
+        // Processar a URL de redirecionamento
+        function processRedirectURL() {
+            const hashParams = {};
+            window.location.hash
+                .substring(1)
+                .split('&')
+                .forEach(hashParam => {
+                    const [key, value] = hashParam.split('=');
+                    hashParams[key] = value;
+                });
 
-        // Exemplo de controles de reprodução
-        // Coloque seus controles de reprodução Spotify aqui
+            // Verifique se o token de acesso está na URL
+            if (hashParams.access_token) {
+                const accessToken = hashParams.access_token;
+
+                // Agora você tem o access token e pode usá-lo para inicializar o player do Spotify
+                initializeSpotifyPlayer(accessToken);
+            }
+        }
+
+        // Verifique se a página foi redirecionada após a autenticação
+        if (window.location.hash) {
+            processRedirectURL();
+        }
     </script>
 </body>
 </html>
